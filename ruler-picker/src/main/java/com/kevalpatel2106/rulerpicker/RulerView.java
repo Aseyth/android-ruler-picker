@@ -332,7 +332,7 @@ final class RulerView extends View {
     private void drawLongIndicator(@NonNull final Canvas canvas,
                                    final int value) {
         canvas.drawLine(mIndicatorInterval * value,
-                0,
+                mTextPaint.getTextSize() + 15,
                 mIndicatorInterval * value,
                 mLongIndicatorHeight,
                 mIndicatorPaint);
