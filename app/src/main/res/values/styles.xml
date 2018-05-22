@@ -30,7 +30,7 @@
 
     <!-- Base application theme. -->
     <style name="CounterTextStyle" parent="Base.TextAppearance.AppCompat.Small">
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
     <style name="SettingsHeading">
@@ -38,6 +38,7 @@
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_marginRight">16dp</item>
+        <item name="android:textColor">@android:color/black</item>
         <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">16dp</item>
         <item name="android:layout_marginTop">16dp</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Headline</item>
@@ -47,6 +48,7 @@
         <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">8dp</item>
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:layout_marginRight">8dp</item>
+        <item name="android:textColor">@android:color/black</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
         <item name="android:minHeight">@dimen/settings_item_height</item>
         <item name="android:gravity">center_vertical</item>
@@ -56,6 +58,7 @@
     <style name="PickerSeekbar">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/black</item>
         <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">16dp</item>
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:gravity">bottom</item>
@@ -65,6 +68,7 @@
 
     <style name="ValuePickerEditText">
         <item name="android:layout_width">0dp</item>
+        <item name="android:textColor">@android:color/black</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">16dp</item>
         <item name="android:inputType">number</item>
@@ -74,6 +78,7 @@
     </style>
 
     <style name="ColorPanelStyle">
+        <item name="android:textColor">@android:color/black</item>
         <item name="android:layout_width">@dimen/settings_item_height</item>
         <item name="android:layout_height">@dimen/settings_item_height</item>
         <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">16dp</item>

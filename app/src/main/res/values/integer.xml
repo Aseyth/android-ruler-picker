@@ -28,6 +28,6 @@
     <integer name="interval_interval_min_value">10</integer>
     <integer name="interval_interval_max_value">30</integer>
 
-    <integer name="min_value">125</integer>
-    <integer name="max_value">350</integer>
+    <integer name="min_value">120</integer>
+    <integer name="max_value">250</integer>
 </resources>
