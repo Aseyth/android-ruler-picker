@@ -156,11 +156,11 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
 
             try { //Parse params
                 if (a.hasValue(R.styleable.RulerValuePicker_notch_color)) {
-                    mNotchColor = a.getColor(R.styleable.RulerValuePicker_notch_color, Color.WHITE);
+                    mNotchColor = a.getColor(R.styleable.RulerValuePicker_notch_color, Color.BLACK);
                 }
 
                 if (a.hasValue(R.styleable.RulerValuePicker_ruler_text_color)) {
-                    setTextColor(a.getColor(R.styleable.RulerValuePicker_ruler_text_color, Color.WHITE));
+                    setTextColor(a.getColor(R.styleable.RulerValuePicker_ruler_text_color, Color.BLACK));
                 }
 
                 if (a.hasValue(R.styleable.RulerValuePicker_ruler_text_size)) {
@@ -168,17 +168,17 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
                 }
 
                 if (a.hasValue(R.styleable.RulerValuePicker_indicator_color)) {
-                    setIndicatorColor(a.getColor(R.styleable.RulerValuePicker_indicator_color, Color.WHITE));
+                    setIndicatorColor(a.getColor(R.styleable.RulerValuePicker_indicator_color, Color.BLACK));
                 }
 
                 if (a.hasValue(R.styleable.RulerValuePicker_indicator_width)) {
                     setIndicatorWidth(a.getDimensionPixelSize(R.styleable.RulerValuePicker_indicator_width,
-                            4));
+                            1));
                 }
 
                 if (a.hasValue(R.styleable.RulerValuePicker_indicator_interval)) {
                     setIndicatorIntervalDistance(a.getDimensionPixelSize(R.styleable.RulerValuePicker_indicator_interval,
-                            4));
+                            12));
                 }
 
                 if (a.hasValue(R.styleable.RulerValuePicker_long_height_height_ratio)
@@ -212,7 +212,7 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
      */
     private void prepareNotchPaint() {
         mNotchPaint.setColor(mNotchColor);
-        mNotchPaint.setStrokeWidth(8f);
+        mNotchPaint.setStrokeWidth(10f);
         mNotchPaint.setStyle(Paint.Style.FILL_AND_STROKE);
     }
 
@@ -251,14 +251,16 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
         mHorizontalScrollView.removeAllViews();
         mHorizontalScrollView.addView(rulerContainer);
 
+        rulerContainer.setWeightSum(0f);
+
         //Add scroll view to this view.
         removeAllViews();
         addView(mHorizontalScrollView);
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
 
         //Draw the top notch
         canvas.drawPath(mNotchPath, mNotchPaint);
