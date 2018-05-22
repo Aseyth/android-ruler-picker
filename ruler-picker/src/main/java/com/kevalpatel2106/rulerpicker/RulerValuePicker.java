@@ -212,7 +212,7 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
      */
     private void prepareNotchPaint() {
         mNotchPaint.setColor(mNotchColor);
-        mNotchPaint.setStrokeWidth(5f);
+        mNotchPaint.setStrokeWidth(8f);
         mNotchPaint.setStyle(Paint.Style.FILL_AND_STROKE);
     }
 
