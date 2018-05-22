@@ -295,9 +295,9 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
     private void calculateNotchPath() {
         mNotchPath.reset();
 
-        mNotchPath.moveTo(getWidth() / 2 - 30, 0);
-        mNotchPath.lineTo(getWidth() / 2, 40);
-        mNotchPath.lineTo(getWidth() / 2 + 30, 0);
+        mNotchPath.moveTo(getWidth() / 2, 45);
+        mNotchPath.lineTo(getWidth() / 2, 200);
+        mNotchPath.lineTo(getWidth() / 2, 45);
     }
 
     /**
