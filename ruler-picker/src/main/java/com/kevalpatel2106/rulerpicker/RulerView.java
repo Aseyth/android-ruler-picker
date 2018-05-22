@@ -349,7 +349,7 @@ final class RulerView extends View {
                                final int value) {
         canvas.drawText(String.valueOf(value + mMinValue),
                 mIndicatorInterval * value,
-                mLongIndicatorHeight + mTextPaint.getTextSize(),
+                mTextPaint.getTextSize(),
                 mTextPaint);
     }
 
@@ -484,8 +484,9 @@ final class RulerView extends View {
      * @throws IllegalArgumentException if interval is negative or zero.
      */
     void setIndicatorIntervalDistance(final int indicatorIntervalPx) {
-        if (indicatorIntervalPx <= 0)
+        if (indicatorIntervalPx <= 0) {
             throw new IllegalArgumentException("Interval cannot be negative or zero.");
+        }
 
         mIndicatorInterval = indicatorIntervalPx;
         invalidate();
