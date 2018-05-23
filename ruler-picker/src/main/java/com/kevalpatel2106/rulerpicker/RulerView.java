@@ -26,6 +26,7 @@ import android.support.annotation.Dimension;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -161,6 +162,11 @@ final class RulerView extends View {
     @Dimension
     private float mIndicatorWidthPx = 4f;
 
+    private boolean mUSUnit = false;
+    private int feet = 2;
+    private int inches = 0;
+    private int count = 0;
+
     public RulerView(@NonNull final Context context) {
         super(context);
         parseAttr(null);
@@ -263,16 +269,26 @@ final class RulerView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        resetCount();
         //Iterate through all value
         for (int value = 1; value < mMaxValue - mMinValue; value++) {
 
-            if (value % 10 == 0) {
-                drawValueText(canvas, value);
-            }
-            if (value % 5 == 0) {
-                drawLongIndicator(canvas, value);
+            if (mUSUnit) {
+                if (value % 6 == 0) {
+                    drawValueText(canvas, value);
+                    drawLongIndicator(canvas, value);
+                } else {
+                    drawSmallIndicator(canvas, value);
+                }
             } else {
-                drawSmallIndicator(canvas, value);
+                if (value % 10 == 0) {
+                    drawValueText(canvas, value);
+                }
+                if (value % 5 == 0) {
+                    drawLongIndicator(canvas, value);
+                } else {
+                    drawSmallIndicator(canvas, value);
+                }
             }
         }
 
@@ -347,13 +363,42 @@ final class RulerView extends View {
      */
     private void drawValueText(@NonNull final Canvas canvas,
                                final int value) {
-        canvas.drawText(String.valueOf(value + mMinValue),
-                mIndicatorInterval * value,
-                mTextPaint.getTextSize(),
-                mTextPaint);
+        if (mUSUnit) {
+            Log.e("log converter", "feet = " + feet + " / inches = " + inches);
+
+            count++;
+            if (count == 1) {
+                inches = 6;
+            }
+            if (count == 2) {
+                count = 0;
+                feet++;
+                inches = 0;
+            }
+
+            canvas.drawText(feet + "'" + inches,
+                    mIndicatorInterval * value,
+                    mTextPaint.getTextSize(),
+                    mTextPaint);
+        } else {
+            canvas.drawText(String.valueOf(value + mMinValue),
+                    mIndicatorInterval * value,
+                    mTextPaint.getTextSize(),
+                    mTextPaint);
+        }
     }
 
     /////////////////////// Properties getter/setter ///////////////////////
+
+    void setUSUnit() {
+        mUSUnit = true;
+    }
+
+    void resetCount() {
+        feet = 2;
+        inches = 0;
+        count = 0;
+    }
 
     /**
      * @return Color integer value of the ruler text color.
