@@ -45,7 +45,7 @@
     </declare-styleable>
 
     <declare-styleable name="RulerValuePicker">
-        <attr name="us_unit"/>
+        <attr name="feet_inches_support"/>
 
         <attr name="min_value"/>
         <attr name="max_value"/>

@@ -31,7 +31,7 @@
             android:background="#fff"
             android:layout_height="150dp"
             android:layout_marginTop="35dp"
-            app:us_unit="1"
+            app:feet_inches_support="1"
             app:indicator_color="#000"
             app:indicator_interval="12dp"
             app:indicator_width="1dp"

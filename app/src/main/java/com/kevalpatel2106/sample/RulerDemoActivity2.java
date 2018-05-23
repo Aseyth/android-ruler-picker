@@ -54,12 +54,12 @@ public class RulerDemoActivity2 extends AppCompatActivity {
             }
 
             @Override
-            public void onValueChangeString(String selectedValue) {
+            public void onFeetInchesValueChange(String selectedValue) {
 
             }
 
             @Override
-            public void onIntermediateValueChangeString(String selectedValue) {
+            public void onIntermediateFeetInchesValueChange(String selectedValue) {
 
             }
         });
@@ -82,12 +82,12 @@ public class RulerDemoActivity2 extends AppCompatActivity {
             }
 
             @Override
-            public void onValueChangeString(String selectedValue) {
+            public void onFeetInchesValueChange(String selectedValue) {
 
             }
 
             @Override
-            public void onIntermediateValueChangeString(String selectedValue) {
+            public void onIntermediateFeetInchesValueChange(String selectedValue) {
 
             }
         });

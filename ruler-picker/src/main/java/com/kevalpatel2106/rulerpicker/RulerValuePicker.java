@@ -97,7 +97,9 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
     @NonNull
     private Path mNotchPath;
 
-    private int mNotchColor = Color.WHITE;
+    private boolean hasFeetInchesSupport = false;
+
+    private int mNotchColor = Color.BLACK;
 
     /**
      * Public constructor.
@@ -137,8 +139,6 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
         super(context, attrs, defStyleAttr, defStyleRes);
         init(attrs);
     }
-
-    private boolean mUSUnit = false;
 
     /**
      * Initialize the view and parse the {@link AttributeSet}.
@@ -197,9 +197,9 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
                     setMinMaxValue(a.getInteger(R.styleable.RulerValuePicker_min_value, 0),
                             a.getInteger(R.styleable.RulerValuePicker_max_value, 100));
                 }
-                if (a.hasValue(R.styleable.RulerValuePicker_us_unit)) {
-                    mUSUnit = true;
-                    mRulerView.setUSUnit();
+                if (a.hasValue(R.styleable.RulerValuePicker_feet_inches_support)) {
+                    hasFeetInchesSupport = true;
+                    mRulerView.setFeetInchesSupport();
                 }
             } finally {
                 a.recycle();
@@ -351,7 +351,7 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
         }
     }
 
-    public String getCurrentValueString() {
+    public String getCurrentValueAsString() {
         int absoluteValue = mHorizontalScrollView.getScrollX() / mRulerView.getIndicatorIntervalWidth();
         int value = mRulerView.getMinValue() + absoluteValue;
 
@@ -370,8 +370,8 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
     @Override
     public void onScrollChanged() {
         if (mListener != null) {
-            if (mUSUnit) {
-                mListener.onIntermediateValueChangeString(getCurrentValueString());
+            if (hasFeetInchesSupport) {
+                mListener.onIntermediateFeetInchesValueChange(getCurrentValueAsString());
             } else {
                 mListener.onIntermediateValueChange(getCurrentValue());
             }
@@ -382,8 +382,8 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
     public void onScrollStopped() {
         makeOffsetCorrection(mRulerView.getIndicatorIntervalWidth());
         if (mListener != null) {
-            if (mUSUnit) {
-                mListener.onValueChangeString(getCurrentValueString());
+            if (hasFeetInchesSupport) {
+                mListener.onFeetInchesValueChange(getCurrentValueAsString());
             } else {
                 mListener.onValueChange(getCurrentValue());
             }
@@ -403,7 +403,7 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
     public Parcelable onSaveInstanceState() {
         Parcelable superState = super.onSaveInstanceState();
         SavedState ss = new SavedState(superState);
-        if (mUSUnit) {
+        if (hasFeetInchesSupport) {
             ss.value = getCurrentValue();
         } else {
             ss.value = getCurrentValue();

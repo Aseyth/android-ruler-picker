@@ -162,7 +162,8 @@ final class RulerView extends View {
     @Dimension
     private float mIndicatorWidthPx = 4f;
 
-    private boolean mUSUnit = false;
+    private boolean hasFeetInchesSupport = false;
+
     private int feet = 2;
     private int inches = 0;
     private int count = 0;
@@ -273,7 +274,7 @@ final class RulerView extends View {
         //Iterate through all value
         for (int value = 1; value < mMaxValue - mMinValue; value++) {
 
-            if (mUSUnit) {
+            if (hasFeetInchesSupport) {
                 if (value % 6 == 0) {
                     drawValueText(canvas, value);
                     drawLongIndicator(canvas, value);
@@ -363,9 +364,7 @@ final class RulerView extends View {
      */
     private void drawValueText(@NonNull final Canvas canvas,
                                final int value) {
-        if (mUSUnit) {
-            Log.e("log converter", "feet = " + feet + " / inches = " + inches);
-
+        if (hasFeetInchesSupport) {
             count++;
             if (count == 1) {
                 inches = 6;
@@ -390,8 +389,8 @@ final class RulerView extends View {
 
     /////////////////////// Properties getter/setter ///////////////////////
 
-    void setUSUnit() {
-        mUSUnit = true;
+    void setFeetInchesSupport() {
+        hasFeetInchesSupport = true;
     }
 
     void resetCount() {

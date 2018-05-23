@@ -222,11 +222,11 @@ class RulerDemoActivity : AppCompatActivity() {
                 current_value_tv.text = "$selectedValue"
             }
 
-            override fun onValueChangeString(selectedValue: String?) {
+            override fun onFeetInchesValueChange(selectedValue: String?) {
                 current_value_tv.text = selectedValue
             }
 
-            override fun onIntermediateValueChangeString(selectedValue: String?) {
+            override fun onIntermediateFeetInchesValueChange(selectedValue: String?) {
                 current_value_tv.text = selectedValue
             }
         })
