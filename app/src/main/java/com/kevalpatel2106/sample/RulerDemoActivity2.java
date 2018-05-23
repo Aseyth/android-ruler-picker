@@ -52,6 +52,16 @@ public class RulerDemoActivity2 extends AppCompatActivity {
             public void onIntermediateValueChange(final int selectedValue) {
                 heightPickerValueTv.setText(selectedValue + " cms");
             }
+
+            @Override
+            public void onValueChangeString(String selectedValue) {
+
+            }
+
+            @Override
+            public void onIntermediateValueChangeString(String selectedValue) {
+
+            }
         });
 
         //Set the weight picker
@@ -68,6 +78,16 @@ public class RulerDemoActivity2 extends AppCompatActivity {
             @Override
             public void onIntermediateValueChange(final int selectedValue) {
                 weightPickerValueTv.setText(selectedValue + " kgs");
+
+            }
+
+            @Override
+            public void onValueChangeString(String selectedValue) {
+
+            }
+
+            @Override
+            public void onIntermediateValueChangeString(String selectedValue) {
 
             }
         });

@@ -31,6 +31,7 @@
             android:background="#fff"
             android:layout_height="150dp"
             android:layout_marginTop="35dp"
+            app:us_unit="1"
             app:indicator_color="#000"
             app:indicator_interval="12dp"
             app:indicator_width="1dp"
@@ -56,10 +57,10 @@
             <TextView
                 android:id="@+id/current_value_tv"
                 style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="110dp"
+                android:layout_width="130dp"
                 android:layout_height="50dp"
                 android:background="#fff"
-                android:gravity="right"
+                android:gravity="center"
                 android:textColor="#000"
                 android:textSize="40sp"
                 tools:text="100"/>
@@ -70,6 +71,7 @@
                 android:background="#fff"
                 android:textColor="#000"
                 android:textSize="14sp"
+                android:visibility="gone"
                 android:text="KG"/>
 
             <View

@@ -138,6 +138,8 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
         init(attrs);
     }
 
+    private boolean mUSUnit = false;
+
     /**
      * Initialize the view and parse the {@link AttributeSet}.
      *
@@ -194,6 +196,10 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
                         a.hasValue(R.styleable.RulerValuePicker_max_value)) {
                     setMinMaxValue(a.getInteger(R.styleable.RulerValuePicker_min_value, 0),
                             a.getInteger(R.styleable.RulerValuePicker_max_value, 100));
+                }
+                if (a.hasValue(R.styleable.RulerValuePicker_us_unit)) {
+                    mUSUnit = true;
+                    mRulerView.setUSUnit();
                 }
             } finally {
                 a.recycle();
@@ -298,7 +304,7 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
         mNotchPath.reset();
 
         mNotchPath.moveTo(getWidth() / 2, 45);
-        mNotchPath.lineTo(getWidth() / 2, 200);
+        mNotchPath.lineTo(getWidth() / 2, 400);
         mNotchPath.lineTo(getWidth() / 2, 45);
     }
 
@@ -345,16 +351,42 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
         }
     }
 
+    public String getCurrentValueString() {
+        int absoluteValue = mHorizontalScrollView.getScrollX() / mRulerView.getIndicatorIntervalWidth();
+        int value = mRulerView.getMinValue() + absoluteValue;
+
+        if (value > mRulerView.getMaxValue()) {
+            return mRulerView.getMaxValue() + absoluteValue + "'0";
+        } else if (value < mRulerView.getMinValue()) {
+            return mRulerView.getMaxValue() + "'0";
+        } else {
+            int divVal = value / 12;
+            int feet = 2 + divVal;
+            int inches = value - (divVal * 12);
+            return feet + "'" + inches;
+        }
+    }
+
     @Override
     public void onScrollChanged() {
-        if (mListener != null) mListener.onIntermediateValueChange(getCurrentValue());
+        if (mListener != null) {
+            if (mUSUnit) {
+                mListener.onIntermediateValueChangeString(getCurrentValueString());
+            } else {
+                mListener.onIntermediateValueChange(getCurrentValue());
+            }
+        }
     }
 
     @Override
     public void onScrollStopped() {
         makeOffsetCorrection(mRulerView.getIndicatorIntervalWidth());
         if (mListener != null) {
-            mListener.onValueChange(getCurrentValue());
+            if (mUSUnit) {
+                mListener.onValueChangeString(getCurrentValueString());
+            } else {
+                mListener.onValueChange(getCurrentValue());
+            }
         }
     }
 
@@ -371,7 +403,11 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
     public Parcelable onSaveInstanceState() {
         Parcelable superState = super.onSaveInstanceState();
         SavedState ss = new SavedState(superState);
-        ss.value = getCurrentValue();
+        if (mUSUnit) {
+            ss.value = getCurrentValue();
+        } else {
+            ss.value = getCurrentValue();
+        }
         return ss;
     }
 

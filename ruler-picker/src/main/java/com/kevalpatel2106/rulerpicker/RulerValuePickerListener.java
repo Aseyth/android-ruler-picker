@@ -23,5 +23,10 @@ public interface RulerValuePickerListener {
 
     void onValueChange(int selectedValue);
 
+    void onValueChangeString(String selectedValue);
+
     void onIntermediateValueChange(int selectedValue);
+
+    void onIntermediateValueChangeString(String selectedValue);
+
 }

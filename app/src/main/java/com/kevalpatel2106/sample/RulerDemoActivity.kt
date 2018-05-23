@@ -222,6 +222,13 @@ class RulerDemoActivity : AppCompatActivity() {
                 current_value_tv.text = "$selectedValue"
             }
 
+            override fun onValueChangeString(selectedValue: String?) {
+                current_value_tv.text = selectedValue
+            }
+
+            override fun onIntermediateValueChangeString(selectedValue: String?) {
+                current_value_tv.text = selectedValue
+            }
         })
     }
 
